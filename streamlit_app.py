@@ -69,4 +69,33 @@ upload_obrazok = st.file_uploader("Nahrajte obrazok: ", type = ["jpg", "jpeg", "
 if upload_obrazok is not None:
     obrazok = Image.open(upload_obrazok)
     st.image(obrazok, caption = "Nahrany obrazok", use_column_width=True)
-    
+
+
+# Konvertovanie pandas dataframe do CSV
+csv = df.to_csv(index=False)
+st.download_button(
+    label = "Stiahnut CSV",
+    data = csv,
+    file_name="filmy.csv",
+    mime = "text/csv"
+)
+
+
+st.write(
+    "# 📻 13. Výber jednej možnosti. (Radio)"
+)
+volba = st.radio("Vyberte oblubeny zaner filmu: ", ("Akcne", "Komedie", "Drama"))
+if volba == "Akcne":
+    st.write("Vybrali si akcne filmy")
+elif (volba == "Komedie"):
+    st.write("Vybrali si komedie")
+else:
+    st.write("Vybrali si Drama")
+
+
+
+vybrane_filmy = st.multiselect(
+    "Vyberte svoje oblubene filmy",
+    ["Matrix", "Pan prsten", "Star Wars", "Inception"],
+    placeholder= "Vyberte film, ktory sa vam paci"
+)
